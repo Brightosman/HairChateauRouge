@@ -1,0 +1,34 @@
+<div class="card">
+    {% for media in product.media %}
+        <img src="{{ asset("media/mediaUpload/" ~ media.nom ) }}" alt="" style="width:200px" class="card-img-top">
+    {% endfor %}
+    <div class="card-body">
+        <h3 class="card=title">{{ product.titre }}</h3>
+        <h6 class="card=title">{{ product.refernce }}</h6>
+        <div class="card-title" style="font-weight: bold; font-size: 1.5rem;">
+        {{ product.prix | number_format(0, ',',' ')}} €
+        </div>
+        <p class="text text-muted">{{ product.description }}</p>
+        <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
+        <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+        <div>
+            {% for c in product.categorie %}
+                <em class="text-muted text-primary text-italic">#{{ c.nom }}</em>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{{ path('add_to_basket', {id: product.id})}}" class="btn btn-success">
+            <i class="bi bi-cart-plus"></i> Ajouter
+            </a>
+        </div>
+    </div>
+    
+</div>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 20px
+	}
+</style>

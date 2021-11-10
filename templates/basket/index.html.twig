@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BasketController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Mon Panier ✅</h1>
+    
+
+    <div class="row justify-content-around">
+        {% for element in basketData %}
+            {# {% for media in element.media %}
+                        <img src="{{ asset("media/mediaUpload/" ~ media.nom ) }}" alt="" style="width:150px"> 
+                                
+                    {% endfor %} #}
+
+            <h5>{{ element.product.titre }}</h5>
+            <h5 class="text-right">{{ element.product.prix }}
+                Eur</h5>
+            <h5>{{ element.quantity }}</h5>
+            <h5 class="text-right">{{ element.quantity * element.product.prix }}
+                Eur</h5>
+            <a href="{{path("add_to_basket", {id: element.product.id})}}" 
+            class="btn btn-success">Ajouter
+            </a>
+            <a href="{{path("basket_remove", {id: element.product.id})}}" 
+             class="btn btn-warning">Supprimer
+            </a>
+             <a href="{{path("basket_delete", {id: element.product.id})}}" 
+             class="btn btn-danger">Vide
+            </a>
+
+
+        {% else %}
+            <h4 class="text-center">Votre panier est vide</h4>
+        {% endfor %}
+
+        
+    </div>
+
+    <div>
+    <h5>Total</h5>
+    <h5 class="text-end">{{ total }}</h5>
+    </div>
+    <div>
+        <a href="{{path("basket_delete_all")}}" 
+             class="btn btn-danger">Supprimer tout
+        </a>
+    </div>
+
+
+
+
+    
+</div>
+
+
+
+{# {{dump()}} #}
+{% endblock %}

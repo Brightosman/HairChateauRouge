@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <h1>Product</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ product.titre }}</td>
+            </tr>
+            <tr>
+                <th>Refernce</th>
+                <td>{{ product.refernce }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ product.prix }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>In_stock</th>
+                <td>{{ product.inStock ? product.inStock|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ product.quantity }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+            <div class="col-md-4 mt-5">
+            <div class="row">
+                {% for media in product.media %}
+                    <img src="{{ asset("media/mediaUpload/" ~ media.nom ) }}" alt="" style="width:200px">
+
+                {% endfor %}
+            </div>
+        </div>
+
+    <a href="{{ path('product_index') }}">back to list</a>
+
+    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+
+<div>
+	<a href="{{ path('add_to_basket', {id: product.id})}}" class="btn btn-success">
+		<i class="bi bi-cart-plus"></i>
+		Ajouter
+	</a>
+</div>
+
+
+    {{ include('product/_delete_form.html.twig') }}
+{% endblock %}

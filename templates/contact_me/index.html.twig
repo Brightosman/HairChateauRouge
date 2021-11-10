@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactMeController!{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center">
+    <form class="text-center border border-light" action="https://formspree.io/f/mknkalez" method="POST">
+
+        <p class="h-4 mb-4">Contact us</p>
+                
+        <input type="email" name="_replyto" class="formcontrol h8 mb-4" placeholder="Votre e-mail">
+
+        <input type="text" name="téléphone portable" class="formcontrol mb-4" placeholder="Votre téléphone portable">
+
+
+
+        <input type="text" name="surname" class="formcontrol mb-4" placeholder="Votre nom">
+
+            
+        <input type="text" name="First Name" class="formcontrol mb-4" placeholder="Votre prenom">
+
+
+
+        <div class="form-group">
+            <textarea name="message" class="formcontrol rounded-0" rows="5" placeholder="Votre message"></textarea>
+        </div>
+
+            <!-- your other form fields go here -->
+        <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
+</div>
+
+
+{% endblock %}
